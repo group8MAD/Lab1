@@ -70,5 +70,6 @@ public class ShowProfile extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         stringName = savedInstanceState.getString("name");
+        name.setText(stringName);
     }
 }
