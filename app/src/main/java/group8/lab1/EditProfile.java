@@ -17,6 +17,7 @@ public class EditProfile extends AppCompatActivity {
     EditText biography;
     ImageButton image;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +28,12 @@ public class EditProfile extends AppCompatActivity {
         image = (ImageButton) findViewById(R.id.image);
 
 
+
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_PICK);
-
+                intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivity(intent);
             }
         });
@@ -54,6 +55,8 @@ public class EditProfile extends AppCompatActivity {
         finish();
         return true;
     }
+
+
 
 
 }
