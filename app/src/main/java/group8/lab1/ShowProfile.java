@@ -1,30 +1,34 @@
 package group8.lab1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toolbar;
+
+import java.net.URI;
 
 public class ShowProfile extends AppCompatActivity {
 
     EditText name;
     EditText email;
     EditText biography;
-    String stringName;
-    String stringEmail;
-    String stringBiography;
+    ImageView image;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_profile);
+        image = (ImageView) findViewById(R.id.image);
         name = (EditText) findViewById(R.id.name);
-        name.setText(stringName);
         email = (EditText) findViewById(R.id.email);
         biography = (EditText) findViewById(R.id.bio);
+
     }
 
     @Override
@@ -48,15 +52,23 @@ public class ShowProfile extends AppCompatActivity {
             String stringName = data.getStringExtra("name");
             String stringEmail = data.getStringExtra("email");
             String stringBiography = data.getStringExtra("biography");
-            if(!stringName.isEmpty()) {
+            String imageUriString = data.getStringExtra("imageUri");
+
+            if(imageUriString != null) {
+                imageUri = Uri.parse(imageUriString);
+                image.setImageURI(imageUri);
+            }
+            if(stringName != null) {
                 name.setText(stringName);
             }
-            if(!stringEmail.isEmpty()) {
+            if(stringEmail != null) {
                 email.setText(stringEmail);
             }
-            if(!stringBiography.isEmpty()) {
+            if(stringBiography != null) {
                 biography.setText(stringBiography);
             }
+
+
         }
     }
 
@@ -64,12 +76,24 @@ public class ShowProfile extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("name", name.getText().toString());
+        outState.putString("email", email.getText().toString());
+        outState.putString("biography", biography.getText().toString());
+        if (imageUri != null)
+            outState.putString("imageUri", imageUri.toString());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        stringName = savedInstanceState.getString("name");
-        name.setText(stringName);
+        name.setText(savedInstanceState.getString("name"));
+        email.setText(savedInstanceState.getString("email"));
+        biography.setText(savedInstanceState.getString("biography"));
+        String imageUriString = savedInstanceState.getString("imageURi");
+
+            if(imageUriString != null){
+                imageUri = Uri.parse(imageUriString);
+                image.setImageURI(imageUri);
+            }
+
     }
 }

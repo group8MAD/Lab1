@@ -2,6 +2,7 @@
     <string name="app_name">Lab1</string>
     <string name="edit">Edit</string>
     <string name="name">Name</string>
+    <string name="save">Save</string>
     <string name="email">Mail@mail.com</string>
     <string name="bio">Short bio</string>
 </resources>
