@@ -2,7 +2,13 @@
     <string name="app_name">Lab1</string>
     <string name="edit">Edit</string>
     <string name="name">Name</string>
+    <string name="nameHint">Insert you name here</string>
     <string name="save">Save</string>
-    <string name="email">Mail@mail.com</string>
-    <string name="bio">Short bio</string>
+    <string name="email">Email</string>
+    <string name="emailHint">Insert your email here</string>
+    <string name="bio">Biography</string>
+    <string name="bioHint">Write a short biography</string>
+    <string name="get_image_gallery">Get image from gallery</string>
+    <string name="get_camera_picture">Take photo</string>
+
 </resources>

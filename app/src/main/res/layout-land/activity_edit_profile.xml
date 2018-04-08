@@ -25,6 +25,8 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="16dp"
         android:maxLines="1"
+        android:inputType="textCapWords"
+        android:maxLength="35"
     />
 
     <EditText
@@ -37,6 +39,7 @@
         android:layout_toRightOf="@id/image"
         android:layout_below="@id/name"
         android:maxLines="1"
+        android:maxLength="35"
         />
 
     <EditText
@@ -48,6 +51,8 @@
         android:layout_toRightOf="@id/image"
         android:layout_below="@id/email"
         android:maxLines="3"
+        android:inputType="textCapSentences"
+        android:maxLength="110"
         />
 
 

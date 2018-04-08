@@ -1,7 +1,10 @@
 package group8.lab1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,9 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
+import java.io.File;
 import java.net.URI;
 
 public class ShowProfile extends AppCompatActivity {
+    public static final String MY_PREFS_NAME = "MyPrefsFile";
+    public static final String PROFILE_PICTURE = "ProfilePicture";
 
     EditText name;
     EditText email;
@@ -29,6 +35,25 @@ public class ShowProfile extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         biography = (EditText) findViewById(R.id.bio);
 
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        String name = prefs.getString("name", null);
+        String email = prefs.getString("email",null);
+        String biography = prefs.getString("biography", null);
+        File directory = getFilesDir();
+        File imageFile = new File(directory, PROFILE_PICTURE);
+        if (name != null) {
+             this.name.setText(name);
+        }
+        if (email != null){
+            this.email.setText(email);
+        }
+        if (biography!=null){
+            this.biography.setText(biography);
+        }
+        imageUri=Uri.fromFile(imageFile);
+        if (imageUri!=null){
+            this.image.setImageURI(imageUri);
+        }
     }
 
     @Override
@@ -58,7 +83,7 @@ public class ShowProfile extends AppCompatActivity {
                 imageUri = Uri.parse(imageUriString);
                 image.setImageURI(imageUri);
             }
-            if(stringName != null) {
+            if(stringName != null ) {
                 name.setText(stringName);
             }
             if(stringEmail != null) {
@@ -67,33 +92,29 @@ public class ShowProfile extends AppCompatActivity {
             if(stringBiography != null) {
                 biography.setText(stringBiography);
             }
-
-
+            File directory = getFilesDir();
+            File imageFile = new File(directory, PROFILE_PICTURE);
+            imageUri=Uri.fromFile(imageFile);
+            if (imageUri!=null){
+                this.image.setImageURI(imageUri);
+            }
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("name", name.getText().toString());
-        outState.putString("email", email.getText().toString());
-        outState.putString("biography", biography.getText().toString());
-        if (imageUri != null)
-            outState.putString("imageUri", imageUri.toString());
-    }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        name.setText(savedInstanceState.getString("name"));
-        email.setText(savedInstanceState.getString("email"));
-        biography.setText(savedInstanceState.getString("biography"));
-        String imageUriString = savedInstanceState.getString("imageURi");
-
-            if(imageUriString != null){
-                imageUri = Uri.parse(imageUriString);
-                image.setImageURI(imageUri);
-            }
-
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        if(name.getText().toString()!=null){
+            editor.putString("name", name.getText().toString());
+        }
+        if(email.getText().toString()!=null){
+            editor.putString("email", email.getText().toString());
+        }
+        if(biography.getText().toString()!=null){
+            editor.putString("biography", biography.getText().toString());
+        }
+        editor.apply();
     }
 }
