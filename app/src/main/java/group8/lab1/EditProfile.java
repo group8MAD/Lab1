@@ -21,9 +21,11 @@ import android.widget.Toast;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EditProfile extends AppCompatActivity {
-    public static final int REQUEST_CAMERA_PERMISSION = 200;
+    public static final int REQUEST_PERMISSIONS = 200;
     public static final String PROFILE_PICTURE = "ProfilePicture";
 
     EditText name;
@@ -37,10 +39,10 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        name = (EditText) findViewById(R.id.name);
-        email = (EditText) findViewById(R.id.email);
-        biography = (EditText) findViewById(R.id.bio);
-        image = (ImageButton) findViewById(R.id.image);
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        biography = findViewById(R.id.bio);
+        image = findViewById(R.id.image);
 
         directory = getFilesDir();
         image.setOnClickListener(myListener);
@@ -49,13 +51,10 @@ public class EditProfile extends AppCompatActivity {
     private View.OnClickListener myListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (ContextCompat.checkSelfPermission(EditProfile.this, Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(EditProfile.this,new String[]{Manifest.permission.CAMERA},REQUEST_CAMERA_PERMISSION);
-            }else{
+            if (checkAndRequestPermissions()) {
                 CropImage.activity()
-                        .setAspectRatio(1,1)
-                        .setMinCropResultSize(512,512)
+                        .setAspectRatio(1, 1)
+                        .setMinCropResultSize(512, 512)
                         .start(EditProfile.this);
             }
         }
@@ -65,13 +64,39 @@ public class EditProfile extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+        if (requestCode == REQUEST_PERMISSIONS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, getApplicationContext().getString(R.string.grantedPermission), Toast.LENGTH_LONG).show();
+                CropImage.activity()
+                        .setAspectRatio(1,1)
+                        .setMinCropResultSize(512,512)
+                        .start(EditProfile.this);
             } else {
                 Toast.makeText(this, getApplicationContext().getString(R.string.deniedPermission), Toast.LENGTH_LONG).show();
             }
         }
+    }
+    private  boolean checkAndRequestPermissions() {
+        int readExternalStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int writeExternalStorage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int camera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        List<String> listPermissionsNeeded = new ArrayList<String>();
+
+        if (readExternalStorage != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+        if (writeExternalStorage != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (camera != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        }
+
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),REQUEST_PERMISSIONS);
+            return false;
+        }
+        return true;
     }
 
     @Override
