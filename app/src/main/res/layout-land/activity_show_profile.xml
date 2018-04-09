@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@mipmap/icon_profile"
         android:minWidth="300dp"
+        android:scaleType="fitXY"
         />
 
     <EditText

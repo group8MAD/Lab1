@@ -24,7 +24,8 @@ public class ShowProfile extends AppCompatActivity {
     EditText email;
     EditText biography;
     ImageView image;
-    Uri imageUri;
+    File directory;
+    File imageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,9 @@ public class ShowProfile extends AppCompatActivity {
         String name = prefs.getString("name", null);
         String email = prefs.getString("email",null);
         String biography = prefs.getString("biography", null);
-        File directory = getFilesDir();
-        File imageFile = new File(directory, PROFILE_PICTURE);
+        directory = getFilesDir();
+        imageFile = new File(directory, PROFILE_PICTURE);
+
         if (name != null) {
              this.name.setText(name);
         }
@@ -50,9 +52,9 @@ public class ShowProfile extends AppCompatActivity {
         if (biography!=null){
             this.biography.setText(biography);
         }
-        imageUri=Uri.fromFile(imageFile);
-        if (imageUri!=null){
-            this.image.setImageURI(imageUri);
+
+        if (imageFile.exists()){
+            this.image.setImageURI(Uri.fromFile(imageFile));
         }
     }
 
@@ -79,10 +81,6 @@ public class ShowProfile extends AppCompatActivity {
             String stringBiography = data.getStringExtra("biography");
             String imageUriString = data.getStringExtra("imageUri");
 
-            if(imageUriString != null) {
-                imageUri = Uri.parse(imageUriString);
-                image.setImageURI(imageUri);
-            }
             if(stringName != null ) {
                 name.setText(stringName);
             }
@@ -92,11 +90,8 @@ public class ShowProfile extends AppCompatActivity {
             if(stringBiography != null) {
                 biography.setText(stringBiography);
             }
-            File directory = getFilesDir();
-            File imageFile = new File(directory, PROFILE_PICTURE);
-            imageUri=Uri.fromFile(imageFile);
-            if (imageUri!=null){
-                this.image.setImageURI(imageUri);
+            if(imageUriString!=null && imageUriString.equals("OK")) {
+                recreate();
             }
         }
     }
@@ -106,13 +101,13 @@ public class ShowProfile extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-        if(name.getText().toString()!=null){
+        if(!name.getText().toString().isEmpty()){
             editor.putString("name", name.getText().toString());
         }
-        if(email.getText().toString()!=null){
+        if(!email.getText().toString().isEmpty()){
             editor.putString("email", email.getText().toString());
         }
-        if(biography.getText().toString()!=null){
+        if(!biography.getText().toString().isEmpty()){
             editor.putString("biography", biography.getText().toString());
         }
         editor.apply();
