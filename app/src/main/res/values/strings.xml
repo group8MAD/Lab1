@@ -10,5 +10,7 @@
     <string name="bioHint">Write a short biography</string>
     <string name="get_image_gallery">Get image from gallery</string>
     <string name="get_camera_picture">Take photo</string>
+    <string name="grantedPermission">Camera permission granted</string>
+    <string name="deniedPermission">Camera permission denied</string>
 
 </resources>
