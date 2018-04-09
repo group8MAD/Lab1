@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab1</string>
+    <string name="edit">Edita</string>
+    <string name="name">Nome</string>
+    <string name="nameHint">Inserisci qui il tuo nome</string>
+    <string name="save">Salva</string>
+    <string name="email">Email</string>
+    <string name="emailHint">Inserisci qui la tua email</string>
+    <string name="bio">Biografia</string>
+    <string name="bioHint">Scrivi una tua breve biografia</string>
+    <string name="get_image_gallery">Acquisici immagine dalla galleria</string>
+    <string name="get_camera_picture">Scatta Foto</string>
+    <string name="grantedPermission">Autorizzazione fotocamera ottenuta</string>
+    <string name="deniedPermission">Autorizzazione fotocamera respinta</string>
+
+</resources>
