@@ -45,6 +45,18 @@ public class EditProfile extends AppCompatActivity {
         image = findViewById(R.id.image);
 
         directory = getFilesDir();
+
+        String nameString = getIntent().getStringExtra("name");
+        String emailString = getIntent().getStringExtra("email");
+        String bioString = getIntent().getStringExtra("bio");
+
+        if(nameString!=null)
+            name.setText(nameString);
+        if(emailString!=null)
+            email.setText(emailString);
+        if(bioString!=null)
+            biography.setText(bioString);
+
         image.setOnClickListener(myListener);
     }
 

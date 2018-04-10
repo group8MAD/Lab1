@@ -1,87 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="group8.lab1.EditProfile"
-    android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <group8.lab1.SquareImageButtonLargePort
-        android:id="@+id/image"
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/icon_profile"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="fitXY"
-        android:layout_marginBottom="50dp"
-        />
+        tools:context="group8.lab1.EditProfile"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/nameDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/name"
-        />
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/nameHint"
-        android:maxLines="2"
-        android:maxLength="30"
-        android:inputType="textCapWords"
-        />
+        <group8.lab1.SquareImageButtonLargePort
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_profile"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="50dp"
+            />
 
-    <TextView
-        android:id="@+id/emailDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/email"
-        />
+        <TextView
+            android:id="@+id/nameDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/name"
+            />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="15dp"
+            android:hint="@string/nameHint"
+            android:maxLines="2"
+            android:maxLength="30"
+            android:inputType="textCapWords"
+            />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="15dp"
+        <TextView
+            android:id="@+id/emailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/email"
+            />
 
-        android:hint="@string/emailHint"
-        android:maxLines="2"
-        android:maxLength="35"
-        android:inputType="textEmailAddress"
-        />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="15dp"
 
-    <TextView
-        android:id="@+id/bioDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/bio"
-        />
+            android:hint="@string/emailHint"
+            android:maxLines="2"
+            android:maxLength="35"
+            android:inputType="textEmailAddress"
+            />
 
-    <EditText
-        android:id="@+id/bio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="@string/bioHint"
-        android:maxLines="6"
-        android:maxLength="200"
+        <TextView
+            android:id="@+id/bioDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/bio"
+            />
 
-        android:inputType="textCapSentences"
+        <EditText
+            android:id="@+id/bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/bioHint"
+            android:maxLines="6"
+            android:maxLength="200"
+            android:inputType="textMultiLine|textCapSentences"
 
-        />
+            />
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

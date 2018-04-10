@@ -27,7 +27,6 @@ public class SquareImageButtonLargeLand extends AppCompatImageButton {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         int height = getMeasuredHeight();
         setMeasuredDimension(height*8/10, height*8/10);
     }

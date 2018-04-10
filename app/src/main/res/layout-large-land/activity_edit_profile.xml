@@ -85,7 +85,7 @@
         android:layout_toRightOf="@id/image"
         android:layout_below="@id/bioDescription"
         android:maxLines="5"
-        android:inputType="textCapSentences"
+        android:inputType="textMultiLine|textCapSentences"
         android:maxLength="300"
         />
 

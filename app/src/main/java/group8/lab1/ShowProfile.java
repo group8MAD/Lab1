@@ -71,6 +71,9 @@ public class ShowProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, EditProfile.class);
+        intent.putExtra("name", name.getText().toString());
+        intent.putExtra("email", email.getText().toString());
+        intent.putExtra("bio",biography.getText().toString());
         startActivityForResult(intent, 0);
         return true;
     }

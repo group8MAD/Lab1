@@ -78,8 +78,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:hint="@string/bioHint"
-        android:inputType="textCapSentences"
+        android:inputType="textMultiLine|textCapSentences"
         android:maxLength="300"
+
         />
 
 
