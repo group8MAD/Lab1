@@ -9,8 +9,6 @@
     <string name="emailHint">Inserisci qui la tua email</string>
     <string name="bio">Biografia</string>
     <string name="bioHint">Scrivi una tua breve biografia</string>
-    <string name="get_image_gallery">Acquisici immagine dalla galleria</string>
-    <string name="get_camera_picture">Scatta Foto</string>
     <string name="grantedPermission">Autorizzazioni ottenute</string>
     <string name="deniedPermission">Autorizzazioni respinte</string>
 
