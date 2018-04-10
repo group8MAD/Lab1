@@ -52,6 +52,7 @@ public class EditProfile extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (checkAndRequestPermissions()) {
+
                 CropImage.activity()
                         .setAspectRatio(1, 1)
                         .setMinCropResultSize(512, 512)

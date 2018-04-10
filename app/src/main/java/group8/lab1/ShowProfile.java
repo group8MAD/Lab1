@@ -17,6 +17,8 @@ import java.io.File;
 import java.net.URI;
 
 public class ShowProfile extends AppCompatActivity {
+
+
     public static final String MY_PREFS_NAME = "MyPrefsFile";
     public static final String PROFILE_PICTURE = "ProfilePicture";
 
@@ -31,10 +33,10 @@ public class ShowProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_profile);
-        image = (ImageView) findViewById(R.id.image);
-        name = (EditText) findViewById(R.id.name);
-        email = (EditText) findViewById(R.id.email);
-        biography = (EditText) findViewById(R.id.bio);
+        image = findViewById(R.id.image);
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        biography = findViewById(R.id.bio);
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String name = prefs.getString("name", null);
@@ -57,6 +59,8 @@ public class ShowProfile extends AppCompatActivity {
             this.image.setImageURI(Uri.fromFile(imageFile));
         }
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
