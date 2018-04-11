@@ -88,15 +88,10 @@ public class ShowProfile extends AppCompatActivity {
             String stringBiography = data.getStringExtra("biography");
             String imageUriString = data.getStringExtra("imageUri");
 
-            if(stringName != null ) {
-                name.setText(stringName);
-            }
-            if(stringEmail != null) {
-                email.setText(stringEmail);
-            }
-            if(stringBiography != null) {
-                biography.setText(stringBiography);
-            }
+            name.setText(stringName);
+            email.setText(stringEmail);
+            biography.setText(stringBiography);
+
             if(imageUriString!=null && imageUriString.equals("OK")) {
                 recreate();
             }

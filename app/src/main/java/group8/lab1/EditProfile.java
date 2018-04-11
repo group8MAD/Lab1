@@ -153,12 +153,11 @@ public class EditProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, ShowProfile.class);
-        if (!name.getText().toString().isEmpty())
-            intent.putExtra("name", name.getText().toString());
-        if (!email.getText().toString().isEmpty())
-           intent.putExtra("email", email.getText().toString());
-        if (!biography.getText().toString().isEmpty())
-            intent.putExtra("biography", biography.getText().toString());
+
+        intent.putExtra("name", name.getText().toString());
+        intent.putExtra("email", email.getText().toString());
+        intent.putExtra("biography", biography.getText().toString());
+        
         if (imageCacheFile!=null ){
             File fileDest = new File(directory, PROFILE_PICTURE);
             if (imageCacheFile.renameTo(fileDest)) {
